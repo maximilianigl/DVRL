@@ -1,0 +1,80 @@
+seed : 
+
+# True/False/auto
+cuda : auto
+
+meta:
+  label: None
+  conditions: None
+
+server:
+  name: None
+  gpu_id: None
+
+opt:
+  optimizer : RMSProp
+  alpha : 0.99 # RMSProp
+  betas : [0.9, 0.999] # Adam
+
+  lr : 3.0e-04
+  eps : 1.0e-05
+  max_grad_norm : 0.5
+
+rl_setting:
+  gamma : 0.99
+  num_processes : 16 # 16
+  num_steps : 5
+
+log:
+  log_interval : 1000
+  save_model_interval : 0
+
+  save_reconstruction_interval: 0
+  save_particle_reconstruction: False
+  predicted_times: [0,1,2,3,4,5,10]
+
+  tmp_dir : './tmp/gym/'
+
+loss_function:
+  # Num_updates = num_frames//num_steps//num_processes
+  num_frames : 50.0e06
+  # action_loss: 1
+  action_loss_coef : 1.
+  entropy_coef : 0.01
+  value_loss_coef : 0.5
+  encoding_loss_coef: 0.0
+
+algorithm:
+  use_particle_filter : False
+
+  # BPTT for num_steps * multiplier_backprop_length
+  multiplier_backprop_length : 5
+
+  model:
+    # Overwritten and set by environment yaml
+    cnn_channels: None
+    observation_type : None
+
+    # Set to 0 to switch off
+    action_encoding: 128
+
+    # Set automatically to false if encoding_loss_coef==0
+    resample: True
+
+    # RNN dimension
+    h_dim: 256 #  = z_dim
+
+    init_function: orthogonal_
+    encoder_batch_norm: False
+    policy_batch_norm: False
+    detach_encoder: False
+
+    obs_loss_coef: 0.0
+
+  particle_filter:
+    num_particles : 10
+    particle_aggregation: rnn
+    z_dim : 256
+
+    prior_loss_coef: 1.0
+    obs_loss_coef: 1.0

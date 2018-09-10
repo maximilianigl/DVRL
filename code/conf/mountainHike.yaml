@@ -1,0 +1,38 @@
+# Death Valley experiment
+
+environment:
+  name : "DeathValley-v0"
+  entry_point : "environments.death_valley:DeathValleyEnv"
+  max_episode_steps : 75
+  vec_norm: False
+  frameskips_cases: []
+  p_blank: 0
+
+  # Output coordinates will be normalised and centered around 0
+  config:
+    transition_std: 0.025
+    observation_std: 0.0 
+
+    # Set to None to switch off
+    goal_reward: 
+
+    goal_position: [0.7, 0.5]
+    goal_radius: 0.1
+    goal_end: False
+    outside_box_cost: -1.5
+    starting_position: [-0.85, -0.85]
+    starting_std: 0.1
+    max_time: 100
+    max_action_value: 0.05
+    action_cost_factor: 0.1
+    shaping_power: 4
+    hill_height: 4
+    box_scale: 10
+
+  model_adaptation:
+    cnn_channels : [64, 64]
+    observation_type : fc 
+    h_dim: 128
+    action_encoding: 64
+  rl_setting_adaptation:
+    gamma: 0.99

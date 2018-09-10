@@ -1,0 +1,17 @@
+
+environment:
+  # name: "PongNoFrameskip-v4"
+  name: "PongNoFrameskip-v0"
+  entry_point: False
+  p_blank: 0.5
+  frameskips_cases: ['Asteroids']
+  vec_norm: False
+
+  model_adaptation:
+    cnn_channels: [32, 64, 32]
+    observation_type : 84x84
+    encoder_batch_norm: True
+    policy_batch_norm: True
+
+  rl_setting_adaptation:
+   gamma: 0.99 
