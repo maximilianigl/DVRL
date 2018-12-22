@@ -129,7 +129,7 @@ def load_results(dir):
     df.sort_values('t', inplace=True)
     df.reset_index(inplace=True)
     df['t'] -= min(header['t_start'] for header in headers)
-    df.headers = headers  # HACK to preserve backwards compatibility
+    df['headers'] = headers  # HACK to preserve backwards compatibility
     return df
 
 
