@@ -18,6 +18,6 @@ NV_GPU="$gpu" ${cmd} run -d \
         --net host \
         --name "$session" \
         -v `pwd`/:$DIR:rw \
-        -t max/pomrl \
+        -t migl/dvrl \
         $@
 
