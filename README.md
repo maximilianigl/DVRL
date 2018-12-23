@@ -51,6 +51,8 @@ From the main folder execute
 python ./code/main.py -p with environment.config_file=openaiEnv.yaml
 ```
 The results will be saved in the `saved_runs` folder in subfolders with incrementing numbers.
+**Please note that the results printed in the console are the _clipped_ rewards, for the true rewards please check 'result.true' in the metrics.json file or use the plotting script**
+
 
 # Plotting
 
